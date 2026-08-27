@@ -8,7 +8,7 @@ function MyButton() {
     return React.createElement(
         'button',
         {
-            onClick : () => setIsClicked(true),
+            onClick : () => setIsClicked(!isClicked),
         },
         isClicked ? 'Clicked' : 'Click here'
 
