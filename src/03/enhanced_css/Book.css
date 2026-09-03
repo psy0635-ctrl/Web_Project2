@@ -1,0 +1,221 @@
+/* =========================
+   전체 기본 설정
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+
+    background-color: #d4d4d2;
+
+    font-family:
+            Arial,
+            "Noto Sans KR",
+            sans-serif;
+}
+
+
+/* =========================
+   전체 책 목록
+   ========================= */
+
+.library-container {
+    width: min(1100px, calc(100% - 50px));
+
+    margin: 0 auto;
+    padding: 70px 20px 100px;
+
+    display: grid;
+
+    /*
+       6칸을 만든 뒤
+       책 하나가 2칸씩 사용
+       → 한 줄에 책 3권
+    */
+    grid-template-columns: repeat(6, 1fr);
+
+    column-gap: 55px;
+    row-gap: 75px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   책 카드
+   ========================= */
+
+.book-card {
+    grid-column: span 2;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    text-align: center;
+}
+
+
+/* =========================
+   5권일 때 마지막 줄 가운데 정렬
+   ========================= */
+
+/* 4번째 책 */
+.book-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+
+/* 5번째 책 */
+.book-card:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+
+/* =========================
+   책 표지
+   ========================= */
+
+.book-cover {
+    display: block;
+
+    width: 100%;
+    max-width: 255px;
+
+    aspect-ratio: 0.68;
+
+    margin: 0 auto;
+
+    object-fit: cover;
+
+    background-color: #eeeeeb;
+
+    border: none;
+    border-radius: 1px;
+
+    /*
+       참고 이미지의 핵심:
+       책이 배경에서 살짝 떠 있는 느낌
+    */
+    box-shadow:
+            10px 12px 13px rgba(0, 0, 0, 0.20),
+            3px 4px 5px rgba(0, 0, 0, 0.10);
+
+    transition:
+            transform 0.28s ease,
+            box-shadow 0.28s ease;
+}
+
+
+/* =========================
+   기존 제목/페이지 숨기기
+   표지 자체가 메인 디자인
+   ========================= */
+
+.book-card h1,
+.book-card h2 {
+    display: none;
+}
+
+
+/* =========================
+   Hover
+   ========================= */
+
+.book-card:hover .book-cover {
+    transform: translateY(-8px);
+
+    box-shadow:
+            14px 20px 20px rgba(0, 0, 0, 0.24),
+            4px 6px 7px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   노트북
+   ========================= */
+
+@media (max-width: 1000px) {
+
+    .library-container {
+        width: min(850px, calc(100% - 40px));
+
+        column-gap: 35px;
+        row-gap: 55px;
+
+        padding-top: 50px;
+    }
+
+    .book-cover {
+        max-width: 220px;
+    }
+}
+
+
+/* =========================
+   태블릿
+   2열
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .library-container {
+        width: calc(100% - 30px);
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 40px 25px;
+
+        padding: 35px 10px 70px;
+    }
+
+
+    .book-card,
+    .book-card:nth-child(4),
+    .book-card:nth-child(5) {
+        grid-column: auto;
+    }
+
+
+    .book-cover {
+        max-width: 230px;
+    }
+}
+
+
+/* =========================
+   스마트폰
+   ========================= */
+
+@media (max-width: 450px) {
+
+    .library-container {
+        gap: 30px 18px;
+
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+
+    .book-cover {
+        width: 100%;
+
+        max-width: 180px;
+    }
+}
