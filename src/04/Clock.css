@@ -1,0 +1,449 @@
+/* =========================
+   기본 설정
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+            Arial,
+            "Noto Sans KR",
+            sans-serif;
+}
+
+
+/* =========================
+   전체 화면
+========================= */
+
+.clock-page {
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+            radial-gradient(
+                    circle at 50% 12%,
+                    #fffce9 0%,
+                    #f7ebcd 18%,
+                    #e8cfa8 45%,
+                    #d5ad7e 75%,
+                    #c29465 100%
+            );
+
+    overflow: hidden;
+}
+
+
+/* 위쪽 조명 효과 */
+.clock-page::before {
+    content: "";
+
+    position: absolute;
+
+    top: -240px;
+    left: 50%;
+
+    width: 1000px;
+    height: 600px;
+
+    transform: translateX(-50%);
+
+    background:
+            radial-gradient(
+                    ellipse,
+                    rgba(255, 255, 240, 0.95) 0%,
+                    rgba(255, 241, 201, 0.60) 35%,
+                    transparent 72%
+            );
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+
+/* 아래쪽 은은한 그림자 */
+.clock-page::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 4%;
+    left: 50%;
+
+    width: 850px;
+    height: 120px;
+
+    transform: translateX(-50%);
+
+    background:
+            rgba(100, 55, 20, 0.15);
+
+    filter: blur(50px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   학과 이름
+========================= */
+
+.department {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 50px;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #fff9dd;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+            0 0 6px rgba(255, 255, 230, 0.95),
+            0 0 14px rgba(255, 224, 155, 0.8),
+            0 5px 6px rgba(105, 65, 30, 0.3);
+}
+
+
+/* =========================
+   시계 전체 패널
+========================= */
+
+.clock-frame {
+    position: relative;
+    z-index: 2;
+
+    width: 850px;
+    height: 340px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 45px;
+
+    border-radius: 45px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(224, 194, 154, 0.50),
+                    rgba(192, 151, 105, 0.42)
+            );
+
+    border:
+            2px solid rgba(125, 88, 52, 0.45);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+            0 35px 60px rgba(88, 50, 20, 0.32),
+            0 15px 35px rgba(255, 180, 80, 0.28),
+            inset 0 2px 3px rgba(255, 255, 255, 0.60),
+            inset 0 -12px 30px rgba(95, 56, 25, 0.16);
+}
+
+
+/* 안쪽 얇은 테두리 */
+.clock-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 37px;
+
+    border:
+            1px solid rgba(255, 244, 215, 0.45);
+
+    pointer-events: none;
+}
+
+
+/* 아래 Glow */
+.clock-frame::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -38px;
+
+    width: 70%;
+    height: 90px;
+
+    transform: translateX(-50%);
+
+    background:
+            rgba(255, 170, 60, 0.38);
+
+    filter: blur(42px);
+
+    z-index: -1;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   시간 숫자 박스
+========================= */
+
+.time-box {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-width: 190px;
+
+    background: transparent;
+}
+
+
+/* =========================
+   숫자
+========================= */
+
+.time-number {
+    display: block;
+
+    font-size: 115px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -5px;
+
+    color: #fff7bf;
+
+    text-shadow:
+            0 0 4px rgba(255, 255, 220, 1),
+            0 0 9px rgba(255, 245, 180, 0.98),
+            0 0 18px rgba(255, 210, 105, 0.95),
+            0 0 35px rgba(255, 169, 46, 0.82),
+
+            0 14px 8px rgba(130, 75, 28, 0.28),
+            0 23px 18px rgba(105, 58, 22, 0.20);
+
+    filter:
+            drop-shadow(
+                    0 4px 2px rgba(112, 65, 26, 0.25)
+            );
+}
+
+
+/* 초 숫자는 살짝 구분 */
+.seconds {
+    color: #fff4b3;
+}
+
+
+/* =========================
+   콜론 :
+========================= */
+
+.colon {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin:
+            0 5px 12px;
+
+    font-size: 95px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    color: #fff1ad;
+
+    text-shadow:
+            0 0 5px rgba(255, 250, 210, 1),
+            0 0 13px rgba(255, 218, 120, 0.95),
+            0 0 27px rgba(255, 165, 50, 0.85),
+
+            0 12px 9px rgba(120, 67, 25, 0.30);
+}
+
+
+/* =========================
+   반응형 - 태블릿
+========================= */
+
+@media (max-width: 900px) {
+
+    .clock-frame {
+        width: 88vw;
+        height: 300px;
+
+        padding: 35px 25px;
+    }
+
+    .time-box {
+        min-width: 150px;
+    }
+
+    .time-number {
+        font-size: 90px;
+    }
+
+    .colon {
+        font-size: 75px;
+
+        margin:
+                0 3px 9px;
+    }
+
+    .department {
+        font-size: 25px;
+        margin-bottom: 35px;
+    }
+}
+
+
+/* =========================
+   반응형 - 모바일
+========================= */
+
+@media (max-width: 600px) {
+
+    .clock-frame {
+        width: 92vw;
+        height: 220px;
+
+        padding: 25px 10px;
+
+        border-radius: 32px;
+    }
+
+    .clock-frame::before {
+        border-radius: 25px;
+    }
+
+    .time-box {
+        min-width: 90px;
+    }
+
+    .time-number {
+        font-size: 58px;
+
+        letter-spacing: -2px;
+    }
+
+    .colon {
+        font-size: 48px;
+
+        margin:
+                0 2px 6px;
+    }
+
+    .department {
+        font-size: 20px;
+
+        margin-bottom: 28px;
+    }
+}
+
+/* =========================
+   Hover 효과
+========================= */
+
+/* 움직임을 부드럽게 */
+.clock-frame {
+    transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease,
+            border-color 0.35s ease;
+}
+
+.time-number,
+.colon {
+    transition:
+            transform 0.35s ease,
+            color 0.35s ease,
+            text-shadow 0.35s ease;
+}
+
+
+/* 시계에 마우스를 올렸을 때 */
+.clock-frame:hover {
+    /* 살짝 위로 올라옴 */
+    transform: translateY(-10px) scale(1.02);
+
+    /* 테두리가 조금 더 밝아짐 */
+    border-color: rgba(255, 234, 185, 0.75);
+
+    /* 전체 조명이 강해짐 */
+    box-shadow:
+            0 45px 75px rgba(88, 50, 20, 0.40),
+            0 20px 50px rgba(255, 180, 80, 0.45),
+            0 0 45px rgba(255, 196, 105, 0.30),
+            inset 0 2px 4px rgba(255, 255, 255, 0.75),
+            inset 0 -12px 30px rgba(95, 56, 25, 0.14);
+}
+
+
+/* 마우스를 올리면 숫자가 더 밝게 빛남 */
+.clock-frame:hover .time-number {
+    color: #fffbd7;
+
+    transform: translateY(-3px);
+
+    text-shadow:
+            0 0 5px rgba(255, 255, 230, 1),
+            0 0 12px rgba(255, 248, 190, 1),
+            0 0 25px rgba(255, 218, 120, 1),
+            0 0 45px rgba(255, 170, 45, 0.95),
+            0 0 70px rgba(255, 147, 28, 0.50),
+            0 17px 10px rgba(130, 75, 28, 0.30);
+}
+
+
+/* : 부분도 함께 밝아짐 */
+.clock-frame:hover .colon {
+    color: #fff9c9;
+
+    transform: translateY(-3px);
+
+    text-shadow:
+            0 0 7px rgba(255, 255, 220, 1),
+            0 0 18px rgba(255, 220, 120, 1),
+            0 0 35px rgba(255, 166, 45, 0.95);
+}
+
+
+/* 클릭할 수 있는 요소처럼 마우스 변경 */
+.clock-frame {
+    cursor: pointer;
+}
