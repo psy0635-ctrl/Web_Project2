@@ -8,13 +8,15 @@ import reportWebVitals from './reportWebVitals';
 // import './03/Book.css';
 // import Library from './03/enhanced_css/Library';
 
-import Clock from "./04/Clock";
+// import Clock from "./04/ConfirmDialog/Clock";
+// import ConfirmDialogList from "./04/ConfirmDialogList";
+import WelcomeList from "./05/WelcomeList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <Clock/>
+            <WelcomeList/>
             </React.StrictMode>
 
         );
