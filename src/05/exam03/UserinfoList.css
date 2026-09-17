@@ -1,0 +1,258 @@
+body {
+    margin: 0;
+
+    padding: 30px 0;
+
+    min-height: 100vh;
+
+    background:
+            radial-gradient(
+                    circle at 10% 20%,
+                    rgba(139, 92, 246, 0.35),
+                    transparent 30%
+            ),
+            radial-gradient(
+                    circle at 90% 20%,
+                    rgba(236, 72, 153, 0.28),
+                    transparent 30%
+            ),
+            radial-gradient(
+                    circle at 50% 90%,
+                    rgba(59, 130, 246, 0.25),
+                    transparent 35%
+            ),
+            #0f0f18;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* 전체 카드 */
+.comment {
+    position: relative;
+
+    width: 88%;
+    max-width: 1000px;
+
+    min-height: 100px;
+
+    margin: 18px auto;
+
+    padding: 18px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.12),
+                    rgba(255, 255, 255, 0.05)
+            );
+
+    backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 18px;
+
+    box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.35);
+
+    transition: 0.3s;
+}
+
+
+/* 왼쪽 포인트 바 */
+.comment::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+            linear-gradient(
+                    180deg,
+                    #8b5cf6,
+                    #ec4899
+            );
+}
+
+
+/* 배경 빛 */
+.comment::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background:
+            rgba(139, 92, 246, 0.18);
+
+    filter: blur(10px);
+
+    pointer-events: none;
+}
+
+
+/* 카드 hover */
+.comment:hover {
+    transform: translateY(-5px) scale(1.01);
+
+    border-color:
+            rgba(139, 92, 246, 0.7);
+
+    box-shadow:
+            0 16px 38px rgba(0, 0, 0, 0.42),
+            0 0 24px rgba(139, 92, 246, 0.18);
+}
+
+
+/* 댓글 내용 */
+.comment-text {
+    position: relative;
+
+    z-index: 1;
+
+    flex: 1;
+
+    padding: 14px 18px;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    color: #f2f2f2;
+
+    background:
+            rgba(255, 255, 255, 0.07);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+
+.comment:hover .comment-text {
+    background:
+            rgba(139, 92, 246, 0.14);
+
+    transform: translateX(4px);
+}
+
+
+/* 날짜 */
+.comment-date {
+    position: relative;
+
+    z-index: 1;
+
+    width: 145px;
+
+    font-size: 13px;
+
+    color: #b8b8c5;
+
+    text-align: right;
+
+    flex-shrink: 0;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* 첫 번째 카드 */
+.comment:nth-child(1) {
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.25),
+                    rgba(30, 30, 45, 0.8)
+            );
+}
+
+
+/* 두 번째 카드 */
+.comment:nth-child(2) {
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(6, 182, 212, 0.22),
+                    rgba(30, 30, 45, 0.8)
+            );
+}
+
+.comment:nth-child(2)::before {
+    background:
+            linear-gradient(
+                    180deg,
+                    #06b6d4,
+                    #3b82f6
+            );
+}
+
+
+/* 세 번째 카드 */
+.comment:nth-child(3) {
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(236, 72, 153, 0.22),
+                    rgba(30, 30, 45, 0.8)
+            );
+}
+
+.comment:nth-child(3)::before {
+    background:
+            linear-gradient(
+                    180deg,
+                    #ec4899,
+                    #f59e0b
+            );
+}
+
+
+/* 작은 화면 */
+@media (max-width: 700px) {
+
+    .comment {
+        width: 92%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 14px;
+    }
+
+    .userinfo {
+        width: 100%;
+    }
+
+    .comment-date {
+        width: 100%;
+
+        text-align: right;
+    }
+}

@@ -1,0 +1,50 @@
+.wrapper {
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    max-width: 350px;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid grey;
+    border-radius: 16px;
+    background-color: #f9f9f9;
+
+    box-sizing: border-box;
+}
+
+.image {
+    width: 200px;
+    height: 280px;
+
+    border-radius: 8px;
+
+    /* 이미지 비율 유지 */
+    object-fit: cover;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contentContainer {
+    margin-top: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.titleText {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.authorText {
+    color: grey;
+    font-size: 14px;
+    margin-top: 4px;
+}

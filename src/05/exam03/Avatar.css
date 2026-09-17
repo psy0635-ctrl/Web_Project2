@@ -1,0 +1,26 @@
+.avatar {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+            0 0 0 3px #8b5cf6,
+            0 8px 20px rgba(139, 92, 246, 0.35);
+
+    flex-shrink: 0;
+
+    transition: 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.08) rotate(-4deg);
+
+    box-shadow:
+            0 0 0 3px #ec4899,
+            0 10px 26px rgba(236, 72, 153, 0.4);
+}
