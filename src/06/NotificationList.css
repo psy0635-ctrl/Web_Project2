@@ -1,0 +1,186 @@
+/* ================================
+   NotificationList.css
+   전체 알림 목록 화면
+================================ */
+
+
+/* 브라우저 기본 여백 제거 */
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+            "Pretendard",
+            "Noto Sans KR",
+            "맑은 고딕",
+            Arial,
+            sans-serif;
+
+    background:
+            radial-gradient(
+                    circle at 15% 20%,
+                    rgba(99, 102, 241, 0.14),
+                    transparent 35%
+            ),
+            radial-gradient(
+                    circle at 85% 75%,
+                    rgba(14, 165, 233, 0.12),
+                    transparent 35%
+            ),
+            linear-gradient(
+                    135deg,
+                    #f8fafc 0%,
+                    #eef2ff 50%,
+                    #f0f9ff 100%
+            );
+
+    min-height: 100vh;
+}
+
+
+/* 전체 화면 */
+.notification-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 70px 20px;
+}
+
+
+/* 알림 목록을 감싸는 패널 */
+.notification-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 620px;
+
+    padding: 32px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+            0 25px 60px rgba(15, 23, 42, 0.10),
+            0 5px 15px rgba(15, 23, 42, 0.05);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* 패널 위쪽 작은 장식 */
+.notification-container::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 32px;
+
+    width: 72px;
+    height: 4px;
+
+    border-radius: 0 0 10px 10px;
+
+    background: linear-gradient(
+            90deg,
+            #6366f1,
+            #3b82f6,
+            #06b6d4
+    );
+}
+
+
+/* 제목 영역 */
+.notification-header {
+    margin-bottom: 28px;
+}
+
+
+.notification-title {
+    margin: 0 0 8px;
+
+    color: #0f172a;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+
+.notification-description {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* 알림들이 들어가는 영역 */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+/* 알림이 하나도 없을 때 */
+.notification-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 120px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    background: rgba(248, 250, 252, 0.7);
+}
+
+
+/* 화면 크기가 작을 때 */
+@media (max-width: 600px) {
+
+    .notification-page {
+        padding: 30px 14px;
+    }
+
+    .notification-container {
+        padding: 24px 18px;
+
+        border-radius: 22px;
+    }
+
+    .notification-container::before {
+        left: 20px;
+    }
+
+    .notification-title {
+        font-size: 23px;
+    }
+
+    .notification-description {
+        font-size: 13px;
+    }
+}

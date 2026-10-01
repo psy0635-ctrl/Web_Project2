@@ -1,0 +1,160 @@
+/* ================================
+   Notification.css
+   개별 알림 카드 디자인
+================================ */
+
+.notification-card {
+    position: relative;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 18px 22px 18px 56px;
+    margin-bottom: 14px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 18px;
+
+    box-shadow:
+            0 8px 24px rgba(15, 23, 42, 0.08),
+            0 2px 6px rgba(15, 23, 42, 0.04);
+
+    color: #1e293b;
+
+    transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+
+    animation: notification-slide-in 0.5s ease forwards;
+
+    overflow: hidden;
+}
+
+
+/* 왼쪽 포인트 라인 */
+.notification-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: linear-gradient(
+            180deg,
+            #6366f1,
+            #3b82f6,
+            #06b6d4
+    );
+}
+
+
+/* 알림 아이콘 */
+.notification-card::after {
+    content: "✓";
+
+    position: absolute;
+
+    left: 18px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+    );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+}
+
+
+/* 알림 내용 */
+.notification-message {
+    display: block;
+
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    word-break: keep-all;
+}
+
+
+/* 마우스를 올렸을 때 */
+.notification-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(99, 102, 241, 0.3);
+
+    box-shadow:
+            0 14px 35px rgba(15, 23, 42, 0.12),
+            0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+
+/* 새 알림 등장 애니메이션 */
+@keyframes notification-slide-in {
+
+    from {
+        opacity: 0;
+
+        transform:
+                translateY(20px)
+                scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+                translateY(0)
+                scale(1);
+    }
+}
+
+
+/* 모바일 화면 */
+@media (max-width: 600px) {
+
+    .notification-card {
+        padding: 16px 16px 16px 50px;
+
+        border-radius: 15px;
+    }
+
+    .notification-card::after {
+        left: 15px;
+
+        width: 23px;
+        height: 23px;
+    }
+
+    .notification-message {
+        font-size: 14px;
+    }
+}

@@ -13,13 +13,15 @@ import Userinfo from "./05/exam03/Userinfo";
 // import Clock from "./04/ConfirmDialog/Clock";
 // import ConfirmDialogList from "./04/ConfirmDialogList";
 // import WelcomeList from "./05/WelcomeList";
-import UserinfoList from "./05/exam03/UserinfoList";
+// import UserinfoList from "./05/exam03/UserinfoList";
+import Notification from "./06/NotificationList";
+import NotificationList from "./06/NotificationList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <UserinfoList/>
+            <NotificationList/>
             </React.StrictMode>
 
         );
