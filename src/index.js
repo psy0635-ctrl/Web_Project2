@@ -16,12 +16,15 @@ import Userinfo from "./05/exam03/Userinfo";
 // import UserinfoList from "./05/exam03/UserinfoList";
 import Notification from "./06/NotificationList";
 import NotificationList from "./06/NotificationList";
+import Counter from "./07/01/Counter";
+import TextinputWithFocusButton from "./07/02/TextinputWithFocusButton";
+import Accommodate from "./07/Accommodate";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <NotificationList/>
+            <Accommodate/>
             </React.StrictMode>
 
         );
