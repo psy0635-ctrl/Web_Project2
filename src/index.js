@@ -19,12 +19,17 @@ import NotificationList from "./06/NotificationList";
 import Counter from "./07/01/Counter";
 import TextinputWithFocusButton from "./07/02/TextinputWithFocusButton";
 import Accommodate from "./07/Accommodate";
+import MyButton2 from "./08/MyButton2";
+import ConfirmButton from "./08/ConfirmButton";
+import MyButton from "./08/MyButton";
+import ConfirmButton2 from "./08/ConfirmButton2";
+import MessageSender from "./08/MessageSender";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <Accommodate/>
+            <MessageSender/>
             </React.StrictMode>
 
         );
