@@ -24,12 +24,14 @@ import ConfirmButton from "./08/ConfirmButton";
 import MyButton from "./08/MyButton";
 import ConfirmButton2 from "./08/ConfirmButton2";
 import MessageSender from "./08/MessageSender";
+import MainPage from "./09/ex4/MainPage";
+import LandingPage from "./09/finalEX/LandingPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <MessageSender/>
+            <LandingPage/>
             </React.StrictMode>
 
         );

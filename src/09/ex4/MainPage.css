@@ -1,0 +1,997 @@
+
+/* =========================================
+   SIGNAL — DARK NEON UI
+   React Warning Toggle Design
+========================================= */
+
+/* 기본 설정 및 Vite 기본 스타일 충돌 방지 */
+:root {
+    font-family:
+            "Pretendard",
+            "Noto Sans KR",
+            "Malgun Gothic",
+            system-ui,
+            sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    display: block;
+    min-width: 320px;
+    background: #080b0a;
+}
+
+#root {
+    max-width: none;
+    padding: 0;
+    text-align: left;
+}
+
+/* =========================================
+   전체 배경
+========================================= */
+
+.signal-page {
+    --neon: #c7ff70;
+    --neon-soft: #a9ef69;
+    --background: #080b0a;
+    --surface: #121816;
+    --border: #29332e;
+    --text-primary: #f2f5ef;
+    --text-muted: #919d94;
+
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    color: var(--text-primary);
+    background:
+            radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(108, 158, 74, 0.11),
+                    transparent 50%
+            ),
+            #080b0a;
+}
+
+.signal-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+            linear-gradient(
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px
+            ),
+            linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px
+            );
+
+    background-size: 56px 56px;
+    mask-image: linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+    );
+}
+
+.signal-glow {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(85px);
+}
+
+.signal-glow-one {
+    width: 340px;
+    height: 340px;
+    top: 120px;
+    left: -220px;
+    background: rgba(172, 255, 91, 0.10);
+}
+
+.signal-glow-two {
+    width: 420px;
+    height: 420px;
+    top: 360px;
+    right: -270px;
+    background: rgba(109, 200, 130, 0.09);
+}
+
+.signal-container {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1120px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 30px 24px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   상단 헤더
+========================================= */
+
+.signal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.signal-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.signal-logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+
+    display: grid;
+    place-items: center;
+
+    color: #081108;
+    background: linear-gradient(
+            135deg,
+            #dbff9a,
+            #9bfa58
+    );
+
+    box-shadow: 0 0 28px rgba(166, 255, 96, 0.17);
+}
+
+.signal-logo-symbol {
+    font-size: 28px;
+    font-weight: 950;
+    font-style: italic;
+    letter-spacing: -3px;
+}
+
+.signal-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.signal-brand-name {
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.signal-brand-subtitle {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    color: var(--text-muted);
+}
+
+.signal-system-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 15px;
+    border: 1px solid #28382a;
+    border-radius: 100px;
+
+    background: rgba(24, 34, 26, 0.8);
+    color: #c8ecb8;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.signal-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--neon);
+
+    box-shadow: 0 0 12px rgba(199, 255, 112, 0.6);
+}
+
+/* =========================================
+   메인 영역
+========================================= */
+
+.signal-main {
+    width: min(100%, 790px);
+    margin: 65px auto 65px;
+}
+
+.signal-heading {
+    text-align: center;
+    margin-bottom: 43px;
+}
+
+.signal-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 22px;
+
+    color: var(--neon);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.8px;
+}
+
+.signal-eyebrow-line {
+    width: 23px;
+    height: 1px;
+    background: var(--neon);
+}
+
+.signal-title {
+    margin: 0;
+
+    font-size: clamp(66px, 10vw, 108px);
+    line-height: 0.96;
+    font-weight: 950;
+    letter-spacing: -6px;
+    color: #f5f7ef;
+}
+
+.signal-title-accent {
+    color: var(--neon);
+    text-shadow: 0 0 65px rgba(177, 255, 105, 0.18);
+}
+
+.signal-description {
+    margin: 24px auto 0;
+
+    font-size: 14px;
+    line-height: 1.9;
+    font-weight: 400;
+    word-break: keep-all;
+    color: #a2ada4;
+}
+
+/* =========================================
+   메인 패널
+========================================= */
+
+.signal-panel {
+    position: relative;
+    padding: 31px;
+    border: 1px solid #29362d;
+    border-radius: 29px;
+
+    background: linear-gradient(
+            145deg,
+            rgba(23, 30, 26, 0.96),
+            rgba(14, 19, 17, 0.98)
+    );
+
+    box-shadow:
+            0 25px 75px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.signal-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.signal-panel-label {
+    margin: 0 0 7px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.3px;
+    color: var(--neon);
+}
+
+.signal-panel-title {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.signal-state-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 13px;
+    border: 1px solid #39413b;
+    border-radius: 30px;
+
+    background: #1d2420;
+    color: #acb8ae;
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 1.2px;
+
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+.signal-state-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #89958a;
+}
+
+.signal-state-badge.is-active {
+    background: rgba(199, 255, 112, 0.10);
+    color: var(--neon);
+    border-color: rgba(199, 255, 112, 0.35);
+}
+
+.signal-state-badge.is-active .signal-state-dot {
+    background: var(--neon);
+    box-shadow: 0 0 10px rgba(199, 255, 112, 0.65);
+}
+
+/* =========================================
+   경고 메시지 표시 영역
+========================================= */
+
+.signal-display {
+    min-height: 240px;
+    padding: 18px;
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+
+    border-radius: 19px;
+    border: 1px dashed #344039;
+
+    background:
+            radial-gradient(
+                    circle at 50% 50%,
+                    rgba(110, 158, 103, 0.05),
+                    transparent 75%
+            ),
+            #0c110e;
+}
+
+/* 경고가 없을 때 */
+
+.signal-empty-state {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    animation: signalFadeIn 0.35s ease both;
+}
+
+.signal-empty-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 15px;
+    border: 1px solid #334c32;
+    border-radius: 18px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(141, 211, 91, 0.07);
+    color: var(--neon);
+}
+
+.signal-empty-icon span {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.signal-empty-state h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.signal-empty-state p {
+    margin: 0;
+    color: #8c9b90;
+    font-size: 12px;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+/* =========================================
+   경고 배너 — 활성화 상태
+========================================= */
+
+.signal-warning-banner {
+    width: 100%;
+    min-width: 0;
+    padding: 23px 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(199, 255, 112, 0.42);
+    border-radius: 18px;
+
+    background:
+            linear-gradient(
+                    130deg,
+                    rgba(199, 255, 112, 0.15),
+                    rgba(42, 69, 34, 0.12) 60%,
+                    rgba(10, 17, 12, 0.30)
+            );
+
+    box-shadow:
+            inset 0 1px 0 rgba(199, 255, 112, 0.12),
+            0 0 30px rgba(199, 255, 112, 0.035);
+
+    animation: signalAlertIn 0.4s ease both;
+}
+
+.signal-warning-top {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.signal-warning-icon {
+    width: 33px;
+    height: 33px;
+
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+    background: var(--neon);
+    color: #11190d;
+
+    font-size: 19px;
+    font-weight: 950;
+}
+
+.signal-warning-tag {
+    min-width: 0;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 1.7px;
+    color: #d4ffa1;
+}
+
+.signal-warning-indicator {
+    width: 8px;
+    height: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--neon);
+
+    box-shadow: 0 0 15px rgba(199, 255, 112, 0.6);
+    animation: signalPulse 1.6s infinite;
+}
+
+.signal-warning-content {
+    margin-top: 20px;
+    margin-bottom: 22px;
+}
+
+.signal-warning-overline {
+    margin: 0 0 9px;
+    color: #bfe68b;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.signal-warning-content h3 {
+    margin: 0 0 9px;
+    font-size: 23px;
+    line-height: 1.4;
+    font-weight: 850;
+    letter-spacing: -0.7px;
+    word-break: keep-all;
+    color: #f3ffe6;
+}
+
+.signal-warning-description {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.8;
+    word-break: keep-all;
+    color: #b1c4a7;
+}
+
+.signal-warning-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: auto;
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(199, 255, 112, 0.16);
+
+    color: #a8c297;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.2px;
+}
+
+.signal-warning-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--neon);
+}
+
+.signal-warning-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon);
+}
+
+/* =========================================
+   메인 버튼
+========================================= */
+
+.signal-action-button {
+    width: 100%;
+    min-height: 62px;
+    padding: 15px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    border: 1px solid transparent;
+    border-radius: 15px;
+
+    background: var(--neon);
+    color: #11190b;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 850;
+    cursor: pointer;
+
+    box-shadow: 0 7px 28px rgba(181, 255, 94, 0.12);
+    transition:
+            background 0.25s ease,
+            color 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+}
+
+.signal-action-button:hover {
+    background: #ddffa5;
+    transform: translateY(-2px);
+
+    box-shadow: 0 12px 32px rgba(181, 255, 94, 0.2);
+}
+
+.signal-action-button:active {
+    transform: translateY(0);
+}
+
+.signal-action-button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+}
+
+.signal-action-button.is-active {
+    border-color: #435044;
+    background: #242c26;
+    color: #ecf4e8;
+    box-shadow: none;
+}
+
+.signal-action-button.is-active:hover {
+    background: #313c33;
+    border-color: var(--neon);
+}
+
+.signal-button-icon {
+    width: 27px;
+    height: 27px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid currentColor;
+    border-radius: 8px;
+
+    font-size: 20px;
+    line-height: 1;
+}
+
+.signal-button-text {
+    flex: 1;
+    text-align: center;
+}
+
+.signal-button-arrow {
+    font-size: 19px;
+    transition: transform 0.25s ease;
+}
+
+.signal-action-button:hover .signal-button-arrow {
+    transform: translateX(5px);
+}
+
+/* =========================================
+   패널 아래 작은 텍스트
+========================================= */
+
+.signal-panel-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 19px;
+
+    color: #6f7e72;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.3px;
+}
+
+/* =========================================
+   하단 기능 설명 카드
+========================================= */
+
+.signal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.signal-info-card {
+    min-width: 0;
+    padding: 22px 19px;
+
+    border: 1px solid #26312a;
+    border-radius: 18px;
+
+    background: rgba(19, 26, 21, 0.76);
+    transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            background 0.25s ease;
+}
+
+.signal-info-card:hover {
+    transform: translateY(-4px);
+    border-color: #526c47;
+    background: #19231a;
+}
+
+.signal-info-number {
+    color: var(--neon);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.signal-info-card h3 {
+    margin: 17px 0 9px;
+
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.8px;
+}
+
+.signal-info-card p {
+    margin: 0;
+
+    color: #8e9b90;
+    font-size: 11px;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+/* =========================================
+   하단 푸터
+========================================= */
+
+.signal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: auto;
+    padding-top: 22px;
+
+    border-top: 1px solid #1e2821;
+
+    color: #6e7c70;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+/* =========================================
+   애니메이션
+========================================= */
+
+@keyframes signalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes signalAlertIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes signalPulse {
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(199, 255, 112, 0.6);
+    }
+
+    50% {
+        opacity: 0.45;
+        box-shadow: 0 0 3px rgba(199, 255, 112, 0.2);
+    }
+}
+
+/* =========================================
+   태블릿 화면
+========================================= */
+
+@media (max-width: 768px) {
+    .signal-container {
+        padding: 24px 20px;
+    }
+
+    .signal-main {
+        margin: 65px auto 48px;
+    }
+
+    .signal-title {
+        font-size: clamp(57px, 11vw, 86px);
+        letter-spacing: -4px;
+    }
+
+    .signal-panel {
+        padding: 23px;
+    }
+
+    .signal-info-grid {
+        gap: 10px;
+    }
+
+    .signal-info-card {
+        padding: 18px 15px;
+    }
+}
+
+/* =========================================
+   모바일 화면
+========================================= */
+
+@media (max-width: 520px) {
+    .signal-container {
+        padding: 20px 15px;
+    }
+
+    .signal-header {
+        gap: 12px;
+    }
+
+    .signal-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .signal-brand-name {
+        font-size: 16px;
+    }
+
+    .signal-brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1.4px;
+    }
+
+    .signal-system-status {
+        padding: 9px 10px;
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .signal-main {
+        margin: 65px auto 40px;
+    }
+
+    .signal-heading {
+        margin-bottom: 30px;
+    }
+
+    .signal-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.8px;
+    }
+
+    .signal-title {
+        font-size: clamp(50px, 13vw, 70px);
+        letter-spacing: -3.5px;
+    }
+
+    .signal-description {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .signal-panel {
+        padding: 17px;
+        border-radius: 22px;
+    }
+
+    .signal-panel-header {
+        gap: 10px;
+    }
+
+    .signal-panel-title {
+        font-size: 18px;
+    }
+
+    .signal-panel-label {
+        font-size: 9px;
+    }
+
+    .signal-state-badge {
+        padding: 8px 9px;
+        font-size: 8px;
+    }
+
+    .signal-display {
+        min-height: 225px;
+        padding: 11px;
+        border-radius: 15px;
+    }
+
+    .signal-warning-banner {
+        padding: 17px 15px;
+    }
+
+    .signal-warning-tag {
+        font-size: 8px;
+        letter-spacing: 0.8px;
+    }
+
+    .signal-warning-content h3 {
+        font-size: 19px;
+    }
+
+    .signal-warning-description {
+        font-size: 11px;
+    }
+
+    .signal-action-button {
+        min-height: 59px;
+        font-size: 14px;
+    }
+
+    .signal-info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .signal-info-card {
+        padding: 18px;
+    }
+
+    .signal-info-card h3 {
+        margin: 9px 0 5px;
+    }
+
+    .signal-panel-footer,
+    .signal-footer {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* =========================================
+   작은 모바일 화면
+========================================= */
+
+@media (max-width: 360px) {
+    .signal-system-status {
+        font-size: 7px;
+    }
+
+    .signal-title {
+        font-size: 46px;
+    }
+
+    .signal-warning-tag {
+        font-size: 7px;
+    }
+
+    .signal-warning-content h3 {
+        font-size: 17px;
+    }
+
+    .signal-panel {
+        padding: 13px;
+    }
+
+    .signal-display {
+        padding: 9px;
+    }
+}
+
+/* =========================================
+   애니메이션 최소화 설정
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .signal-page *,
+    .signal-page *::before,
+    .signal-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
