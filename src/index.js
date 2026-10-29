@@ -26,12 +26,16 @@ import ConfirmButton2 from "./08/ConfirmButton2";
 import MessageSender from "./08/MessageSender";
 import MainPage from "./09/ex4/MainPage";
 import LandingPage from "./09/finalEX/LandingPage";
+import GuestGreeting from "./09/ex1/GuestGreeting";
+import Greeting from "./09/ex1/Greeting";
+import LogInControl from "./09/ex2/LogInControl";
+import LogInControl2 from "./09/ex3/LogInControl2";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <LandingPage/>
+            <LogInControl2/>
             </React.StrictMode>
 
         );

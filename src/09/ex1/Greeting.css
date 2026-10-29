@@ -1,0 +1,573 @@
+
+/* ======================================
+   GREETING UI — DARK & LIME
+   React Chapter 09
+====================================== */
+
+/* 기본 스타일 */
+
+:root {
+    font-family:
+            "Pretendard",
+            "Noto Sans KR",
+            "Malgun Gothic",
+            system-ui,
+            sans-serif;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    min-width: 320px;
+    display: block;
+    background: #0c1110;
+}
+
+#root {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* ======================================
+   전체 페이지
+====================================== */
+
+.greeting-page {
+    --lime: #c8f76d;
+    --white: #f4f6f1;
+    --muted: #a3aca5;
+
+    min-height: 100vh;
+    padding: 32px 22px 25px;
+
+    color: var(--white);
+
+    background:
+            radial-gradient(
+                    circle at 85% 25%,
+                    rgba(135, 188, 89, 0.1),
+                    transparent 35%
+            ),
+            #0c1110;
+}
+
+.greeting-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ======================================
+   공통 레이아웃
+====================================== */
+
+.greeting-header,
+.greeting-card-top,
+.greeting-card-bottom,
+.greeting-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* ======================================
+   상단 헤더
+====================================== */
+
+.greeting-header {
+    margin-bottom: 55px;
+}
+
+.greeting-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1.6px;
+}
+
+.greeting-brand-symbol {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 13px;
+    background: var(--lime);
+    color: #14200c;
+
+    font-size: 27px;
+}
+
+.greeting-brand-period {
+    color: var(--lime);
+}
+
+.greeting-header-label,
+.greeting-eyebrow,
+.greeting-card-bottom,
+.greeting-footer {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.greeting-header-label {
+    color: #9ba9a0;
+}
+
+/* ======================================
+   메인 카드
+====================================== */
+
+.greeting-card {
+    overflow: hidden;
+
+    border: 1px solid #344036;
+    border-radius: 28px;
+
+    background: #151d18;
+
+    box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.26);
+}
+
+.greeting-card-top {
+    padding: 23px 30px;
+    border-bottom: 1px solid #303a32;
+}
+
+.greeting-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--lime);
+}
+
+.greeting-live-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background: var(--lime);
+
+    box-shadow:
+            0 0 14px rgba(200, 247, 109, 0.45);
+}
+
+/* ======================================
+   로그인 상태 표시
+====================================== */
+
+.greeting-status {
+    padding: 9px 12px;
+
+    border: 1px solid #3b4940;
+    border-radius: 999px;
+
+    color: #c7cfc5;
+    background: #222e26;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+
+    white-space: nowrap;
+}
+
+/* 회원 상태 */
+
+.greeting-status.is-member {
+    background: rgba(200, 247, 109, 0.12);
+    border-color: rgba(200, 247, 109, 0.48);
+    color: var(--lime);
+}
+
+/* ======================================
+   메인 콘텐츠 2단 구성
+====================================== */
+
+.greeting-card-body {
+    display: grid;
+
+    grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 0.85fr);
+
+    min-height: 440px;
+}
+
+.greeting-copy {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 55px 45px;
+}
+
+/* ======================================
+   환영 메시지
+====================================== */
+
+.greeting-message-kicker {
+    margin: 0 0 17px;
+
+    color: var(--lime);
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 850;
+}
+
+.greeting-title {
+    margin: 0;
+
+    font-size: clamp(42px, 5.1vw, 69px);
+    line-height: 1.18;
+    letter-spacing: -3px;
+
+    word-break: keep-all;
+    font-weight: 900;
+}
+
+.greeting-title span {
+    color: var(--lime);
+}
+
+.greeting-description {
+    margin: 24px 0;
+
+    color: #bac5ba;
+
+    font-size: 14px;
+    line-height: 1.85;
+
+    word-break: keep-all;
+}
+
+/* ======================================
+   안내 메시지
+====================================== */
+
+.greeting-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    max-width: 420px;
+    padding: 13px 15px;
+
+    border: 1px solid #36443a;
+    border-radius: 14px;
+
+    background: #202c23;
+    color: #ccd6ca;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    word-break: keep-all;
+}
+
+.greeting-tip-icon {
+    flex-shrink: 0;
+    color: var(--lime);
+    font-weight: 900;
+}
+
+/* ======================================
+   기술 키워드
+====================================== */
+
+.greeting-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 27px;
+}
+
+.greeting-keywords span {
+    border: 1px solid #3d493e;
+    border-radius: 999px;
+
+    padding: 8px 12px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #b9c5b8;
+}
+
+/* ======================================
+   오른쪽 일러스트 영역
+====================================== */
+
+.greeting-visual {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    min-height: 350px;
+    overflow: hidden;
+
+    background: #d7f6a5;
+    color: #142416;
+}
+
+.greeting-visual-orbit {
+    position: absolute;
+
+    width: 390px;
+    height: 390px;
+
+    border: 1px solid rgba(33, 56, 32, 0.18);
+    border-radius: 50%;
+}
+
+.greeting-visual-circle {
+    display: grid;
+    place-items: center;
+
+    width: 265px;
+    height: 265px;
+
+    border-radius: 50%;
+
+    background: #bff274;
+
+    box-shadow:
+            inset -17px -17px 0 rgba(255, 255, 255, 0.2),
+            0 20px 60px rgba(40, 80, 25, 0.1);
+
+    transform: rotate(-8deg);
+}
+
+.greeting-visual-circle span {
+    font-size: clamp(72px, 8vw, 115px);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -10px;
+}
+
+/* 장식 아이콘 */
+
+.greeting-visual-star {
+    position: absolute;
+    font-size: 34px;
+}
+
+.greeting-visual-star.star-one {
+    top: 17%;
+    right: 17%;
+}
+
+.greeting-visual-star.star-two {
+    bottom: 20%;
+    left: 15%;
+    font-size: 23px;
+}
+
+.greeting-visual-caption {
+    position: absolute;
+
+    bottom: 25px;
+    right: 25px;
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 1.2px;
+}
+
+/* ======================================
+   카드 하단
+====================================== */
+
+.greeting-card-bottom {
+    padding: 19px 30px;
+
+    border-top: 1px solid #303a32;
+    color: #a7b4a9;
+}
+
+.greeting-card-bottom span span {
+    color: var(--lime);
+    padding-left: 5px;
+}
+
+/* ======================================
+   페이지 하단
+====================================== */
+
+.greeting-footer {
+    margin-top: 24px;
+    color: #8e9e90;
+}
+
+/* ======================================
+   테스트용 로그인 버튼
+====================================== */
+
+.greeting-demo-button {
+    position: fixed;
+    z-index: 20;
+
+    left: 50%;
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+    min-height: 48px;
+    padding: 0 23px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: var(--demo-lime, #c8f76d);
+    color: #17210f;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 850;
+
+    cursor: pointer;
+
+    box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+.greeting-demo-button:hover {
+    background: #e4ffb9;
+}
+
+.greeting-demo-button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+/* ======================================
+   태블릿 및 모바일
+====================================== */
+
+@media (max-width: 760px) {
+    .greeting-page {
+        padding: 20px 14px 75px;
+    }
+
+    .greeting-header {
+        margin-bottom: 30px;
+    }
+
+    .greeting-card {
+        border-radius: 20px;
+    }
+
+    .greeting-card-top,
+    .greeting-card-bottom {
+        padding: 18px;
+    }
+
+    .greeting-card-body {
+        grid-template-columns: 1fr;
+    }
+
+    .greeting-copy {
+        padding: 45px 25px;
+    }
+
+    .greeting-title {
+        font-size: clamp(40px, 8vw, 60px);
+    }
+
+    .greeting-visual {
+        min-height: 285px;
+    }
+
+    .greeting-visual-circle {
+        width: 210px;
+        height: 210px;
+    }
+
+    .greeting-visual-circle span {
+        font-size: 88px;
+    }
+}
+
+/* ======================================
+   작은 모바일 화면
+====================================== */
+
+@media (max-width: 400px) {
+    .greeting-brand {
+        font-size: 20px;
+    }
+
+    .greeting-brand-symbol {
+        width: 34px;
+        height: 34px;
+    }
+
+    .greeting-header-label {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .greeting-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .greeting-copy {
+        padding: 37px 19px;
+    }
+
+    .greeting-title {
+        font-size: 38px;
+        letter-spacing: -2px;
+    }
+
+    .greeting-description {
+        font-size: 13px;
+    }
+
+    .greeting-card-bottom {
+        font-size: 8px;
+        letter-spacing: 0.3px;
+    }
+
+    .greeting-footer {
+        font-size: 8px;
+        letter-spacing: 0.2px;
+    }
+}
+
+/* ======================================
+   접근성 설정
+====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .greeting-demo-button {
+        transition: none;
+    }
+}

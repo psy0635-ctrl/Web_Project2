@@ -1,0 +1,675 @@
+
+/* =========================================
+   COZY DAY
+   포근한 로그인 실습 디자인
+========================================= */
+
+/* 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    min-width: 320px;
+}
+
+/* =========================================
+   전체 페이지
+========================================= */
+
+.cozy-login {
+    --ink: #3b3936;
+    --muted: #817b73;
+    --peach: #e8a58a;
+    --sage: #8b9c83;
+
+    font-family:
+            "Pretendard",
+            "Noto Sans KR",
+            "Malgun Gothic",
+            system-ui,
+            sans-serif;
+
+    min-height: 100vh;
+    color: var(--ink);
+
+    background:
+            radial-gradient(
+                    circle at 88% 15%,
+                    rgba(255, 217, 198, 0.65),
+                    transparent 30%
+            ),
+            radial-gradient(
+                    circle at 5% 83%,
+                    rgba(216, 229, 205, 0.58),
+                    transparent 35%
+            ),
+            #f8f5ef;
+}
+
+.cozy-login button {
+    font: inherit;
+}
+
+.cozy-shell {
+    width: min(1120px, 100%);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 28px 32px 22px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   상단 헤더
+========================================= */
+
+.cozy-header,
+.cozy-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cozy-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1.8px;
+}
+
+.cozy-logo-symbol {
+    width: 41px;
+    height: 41px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+    background: #f2bd9f;
+    color: #fffaf5;
+
+    font-size: 28px;
+}
+
+.cozy-logo-accent {
+    color: #d98b6e;
+}
+
+.cozy-chapter {
+    color: #958f87;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+}
+
+/* =========================================
+   메인 화면
+========================================= */
+
+.cozy-main {
+    flex: 1;
+
+    display: grid;
+    grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 420px);
+
+    align-items: center;
+
+    gap: clamp(30px, 6vw, 90px);
+    padding: 72px 0;
+}
+
+.cozy-intro {
+    min-width: 0;
+}
+
+.cozy-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #ac7f68;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.cozy-kicker-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+    background: #e6aa8e;
+    box-shadow: 0 0 0 5px #fce5d8;
+}
+
+/* =========================================
+   메인 제목
+========================================= */
+
+.cozy-title {
+    margin: 24px 0;
+
+    font-size: clamp(41px, 4.6vw, 63px);
+    line-height: 1.25;
+    letter-spacing: -3.5px;
+    font-weight: 850;
+
+    word-break: keep-all;
+}
+
+.cozy-title span {
+    color: #c98f75;
+}
+
+.cozy-intro-text {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.95;
+
+    word-break: keep-all;
+}
+
+.cozy-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-top: 28px;
+}
+
+.cozy-tags span {
+    padding: 10px 14px;
+
+    border: 1px solid #ebe4dc;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.72);
+    color: #827c73;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================
+   로그인 카드
+========================================= */
+
+.cozy-card {
+    min-width: 0;
+    padding: 26px;
+
+    border: 1px solid rgba(232, 221, 209, 0.92);
+    border-radius: 30px;
+
+    background: rgba(255, 254, 251, 0.94);
+
+    box-shadow:
+            0 22px 60px rgba(83, 68, 52, 0.08),
+            0 3px 12px rgba(83, 68, 52, 0.03);
+}
+
+.cozy-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cozy-card-label {
+    color: #9a9187;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+/* =========================================
+   로그인 상태 배지
+========================================= */
+
+.cozy-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 9px 12px;
+    border-radius: 999px;
+
+    background: #f2eee9;
+    color: #867c74;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.cozy-status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #b8ada1;
+}
+
+/* 로그인 성공 후 상태 */
+
+.cozy-status-active {
+    color: #627c60;
+    background: #edf4e8;
+}
+
+.cozy-status-active .cozy-status-dot {
+    background: #86aa7d;
+}
+
+/* =========================================
+   CSS로 만든 귀여운 얼굴 디자인
+========================================= */
+
+.cozy-art {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    min-height: 215px;
+    margin: 22px 0 23px;
+    overflow: hidden;
+
+    border-radius: 23px;
+
+    background: linear-gradient(
+            145deg,
+            #fae8d9,
+            #f8e9dd 55%,
+            #e9eee0
+    );
+}
+
+/* 배경 원형 장식 */
+
+.cozy-art::before,
+.cozy-art::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cozy-art::before {
+    width: 235px;
+    height: 235px;
+
+    border: 1px solid rgba(192, 139, 113, 0.25);
+}
+
+.cozy-art::after {
+    width: 295px;
+    height: 295px;
+
+    border: 1px solid rgba(192, 139, 113, 0.15);
+}
+
+/* 얼굴 */
+
+.cozy-face {
+    position: relative;
+    z-index: 1;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+    background: #f3bd87;
+
+    box-shadow:
+            inset -10px -12px 0 rgba(216, 138, 83, 0.14),
+            0 14px 30px rgba(162, 112, 73, 0.13);
+
+    transform: rotate(-9deg);
+}
+
+/* 눈 */
+
+.cozy-eye {
+    position: absolute;
+    top: 56px;
+
+    width: 9px;
+    height: 14px;
+
+    border-radius: 50%;
+    background: #59473b;
+}
+
+.cozy-eye-left {
+    left: 45px;
+}
+
+.cozy-eye-right {
+    right: 45px;
+}
+
+/* 볼 */
+
+.cozy-cheek {
+    position: absolute;
+    top: 79px;
+
+    width: 22px;
+    height: 10px;
+
+    border-radius: 50%;
+    background: #e99d88;
+    opacity: 0.7;
+}
+
+.cozy-cheek-left {
+    left: 21px;
+}
+
+.cozy-cheek-right {
+    right: 21px;
+}
+
+/* 웃는 입 */
+
+.cozy-smile {
+    position: absolute;
+
+    left: 57px;
+    top: 77px;
+
+    width: 31px;
+    height: 19px;
+
+    border-bottom: 4px solid #59473b;
+    border-radius: 0 0 50% 50%;
+}
+
+/* 별 장식 */
+
+.cozy-art-star {
+    position: absolute;
+    z-index: 2;
+    color: #bb907b;
+}
+
+.cozy-art-star-one {
+    top: 31px;
+    right: 46px;
+    font-size: 23px;
+}
+
+.cozy-art-star-two {
+    bottom: 26px;
+    left: 49px;
+    font-size: 19px;
+}
+
+/* =========================================
+   환영 인사
+========================================= */
+
+.cozy-greeting {
+    min-height: 111px;
+}
+
+.cozy-greeting-label {
+    margin: 0 0 7px;
+
+    color: #c89076;
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 1.6px;
+}
+
+.cozy-greeting h2 {
+    margin: 0;
+
+    color: #403c37;
+
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -1.4px;
+
+    word-break: keep-all;
+}
+
+.cozy-greeting h2 span {
+    color: #deaa7f;
+}
+
+.cozy-greeting > p:last-child {
+    margin: 10px 0 0;
+
+    color: #8e857c;
+    font-size: 13px;
+    line-height: 1.65;
+
+    word-break: keep-all;
+}
+
+/* =========================================
+   버튼 영역
+========================================= */
+
+.cozy-actions {
+    margin-top: 22px;
+}
+
+.cozy-button {
+    width: 100%;
+    min-height: 53px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 0 19px;
+
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+/* 로그인 버튼 */
+
+.cozy-button-login {
+    background: #d99577;
+    color: #fffdf8;
+
+    box-shadow:
+            0 7px 18px rgba(203, 129, 99, 0.18);
+}
+
+.cozy-button-login:hover {
+    background: #c98568;
+
+    box-shadow:
+            0 10px 22px rgba(203, 129, 99, 0.22);
+
+    transform: translateY(-2px);
+}
+
+/* 로그아웃 버튼 */
+
+.cozy-button-logout {
+    border-color: #d6dfd1;
+
+    background: #eef3e9;
+    color: #577255;
+}
+
+.cozy-button-logout:hover {
+    background: #e2edda;
+    transform: translateY(-2px);
+}
+
+.cozy-button:active {
+    transform: translateY(0);
+}
+
+.cozy-button:focus-visible {
+    outline: 3px solid #8ba67f;
+    outline-offset: 3px;
+}
+
+.cozy-button-arrow {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* =========================================
+   하단 안내
+========================================= */
+
+.cozy-caption {
+    margin: 16px 0 0;
+
+    color: #a49b92;
+
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+
+    word-break: keep-all;
+}
+
+.cozy-footer {
+    padding-top: 20px;
+
+    border-top: 1px solid #e8e0d6;
+
+    color: #a39b91;
+
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   태블릿 반응형
+========================================= */
+
+@media (max-width: 840px) {
+    .cozy-shell {
+        padding: 22px 20px;
+    }
+
+    .cozy-main {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding: 55px 0 43px;
+    }
+
+    .cozy-title {
+        margin: 17px 0;
+
+        font-size: clamp(40px, 7vw, 55px);
+    }
+
+    .cozy-card {
+        width: min(100%, 480px);
+        justify-self: center;
+    }
+}
+
+/* =========================================
+   모바일 반응형
+========================================= */
+
+@media (max-width: 420px) {
+    .cozy-shell {
+        padding: 18px 14px;
+    }
+
+    .cozy-logo {
+        font-size: 21px;
+    }
+
+    .cozy-logo-symbol {
+        width: 35px;
+        height: 35px;
+        font-size: 23px;
+    }
+
+    .cozy-chapter {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+    }
+
+    .cozy-kicker {
+        font-size: 9px;
+        letter-spacing: 0.8px;
+    }
+
+    .cozy-title {
+        font-size: 38px;
+        letter-spacing: -2.4px;
+    }
+
+    .cozy-intro-text {
+        font-size: 13px;
+    }
+
+    .cozy-card {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .cozy-art {
+        min-height: 185px;
+        margin: 18px 0;
+    }
+
+    .cozy-face {
+        transform: rotate(-9deg) scale(0.85);
+    }
+
+    .cozy-greeting h2 {
+        font-size: 24px;
+    }
+
+    .cozy-footer {
+        font-size: 8px;
+        letter-spacing: 0.2px;
+    }
+}
+
+/* =========================================
+   접근성 - 애니메이션 최소화
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .cozy-button {
+        transition: none;
+    }
+}

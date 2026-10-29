@@ -1,17 +1,59 @@
-import React from "react";
-
-function Toolbar(props) {
-    const {isLoggedIn, loginClick, logoutClick} = props;
-
+function Toolbar({
+                     isLoggedIn,
+                     loginClick,
+                     logoutClick
+                 }) {
     return (
-      <div>
-          {
-              isLoggedIn && <span>환영합니다.</span>
-          }
-          {
-              isLoggedIn ? <button onClick={logoutClick}>로그아웃</button> : <button onClick={loginClick}>로그인</button>
-          }
-      </div>
+        <header className="toolbar">
+            <div
+                className="toolbar-brand"
+                aria-label="Mood Lab"
+            >
+        <span
+            className="toolbar-brand-icon"
+            aria-hidden="true"
+        >
+          ✳
+        </span>
+
+                <span>
+          mood
+          <span className="toolbar-brand-accent">
+            lab.
+          </span>
+        </span>
+            </div>
+
+            <div className="toolbar-actions">
+        <span className="toolbar-chapter">
+          INTERACTIVE UI / 09
+        </span>
+
+                {isLoggedIn && (
+                    <span
+                        className="toolbar-welcome"
+                        role="status"
+                    >
+            환영합니다!
+          </span>
+                )}
+
+                <button
+                    type="button"
+                    className={`toolbar-button ${
+                        isLoggedIn ? "is-logout" : ""
+                    }`}
+                    onClick={
+                        isLoggedIn ? logoutClick : loginClick
+                    }
+                >
+                    {isLoggedIn ? "로그아웃" : "로그인"}
+                    <span aria-hidden="true">
+            {isLoggedIn ? "↗" : "→"}
+          </span>
+                </button>
+            </div>
+        </header>
     );
 }
 
