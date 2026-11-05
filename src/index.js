@@ -30,12 +30,18 @@ import GuestGreeting from "./09/ex1/GuestGreeting";
 import Greeting from "./09/ex1/Greeting";
 import LogInControl from "./09/ex2/LogInControl";
 import LogInControl2 from "./09/ex3/LogInControl2";
+import MapTest from "./10/MapTest";
+import AttendanceBook from "./10/AttendanceBook";
+import AttendanceCardBook from "./10/AttendanceCardBook";
+import NewForm from "./11/NewForm";
+import FruitSelect from "./11/FruitSelect";
+import Reservation from "./11/Reservation";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <LogInControl2/>
+            <Reservation/>
             </React.StrictMode>
 
         );

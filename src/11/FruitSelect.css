@@ -1,0 +1,235 @@
+
+/* FruitSelect 컴포넌트 전용 스타일: 다른 실습 화면과 충돌하지 않도록 범위를 제한 */
+.fruit-page,
+.fruit-page * {
+    box-sizing: border-box;
+}
+
+.fruit-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 52px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
+    color: #27342c;
+    background: radial-gradient(circle at 12% 12%, #fff6cd 0, transparent 37%),
+    radial-gradient(circle at 95% 88%, #d8f5db 0, transparent 42%),
+    #f6faf2;
+}
+
+.fruit-card {
+    width: 100%;
+    max-width: 920px;
+    padding: 52px;
+    border: 1px solid #e6eee0;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0 24px 70px rgba(46, 79, 48, 0.1);
+}
+
+.fruit-header {
+    margin-bottom: 34px;
+}
+
+.fruit-eyebrow {
+    display: inline-block;
+    margin-bottom: 13px;
+    padding: 7px 12px;
+    border-radius: 100px;
+    background: #edf8de;
+    color: #4f8b41;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.fruit-header h1 {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 4vw, 38px);
+    line-height: 1.3;
+    letter-spacing: -1.4px;
+    font-weight: 800;
+}
+
+.fruit-header h1 span {
+    color: #ff9067;
+}
+
+.fruit-header p,
+.fruit-help,
+.fruit-preview p {
+    margin: 0;
+    color: #77827a;
+    line-height: 1.7;
+}
+
+.fruit-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 25px;
+    align-items: stretch;
+}
+
+.fruit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 0;
+}
+
+.fruit-label {
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.fruit-select-wrap {
+    position: relative;
+}
+
+.fruit-select {
+    appearance: none;
+    width: 100%;
+    height: 58px;
+    padding: 0 48px 0 18px;
+    border: 1px solid #d9e4d4;
+    border-radius: 15px;
+    background: #fbfdf9;
+    color: #27342c;
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.fruit-select:focus-visible {
+    outline: 3px solid rgba(111, 175, 88, 0.3);
+    outline-offset: 2px;
+    border-color: #7bb96c;
+}
+
+.fruit-chevron {
+    position: absolute;
+    right: 19px;
+    top: 50%;
+    transform: translateY(-55%);
+    font-size: 25px;
+    color: #6f9667;
+    pointer-events: none;
+}
+
+.fruit-help {
+    margin-top: 11px;
+    font-size: 12px;
+}
+
+.fruit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    margin-top: 28px;
+    border: 0;
+    border-radius: 15px;
+    background: #69a958;
+    color: #fff;
+    font: inherit;
+    font-weight: 750;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.fruit-button:hover:not(:disabled) {
+    background: #528d43;
+    transform: translateY(-2px);
+}
+
+.fruit-button:focus-visible {
+    outline: 3px solid #f3b261;
+    outline-offset: 3px;
+}
+
+.fruit-button:disabled {
+    background: #b8c9b2;
+    cursor: not-allowed;
+}
+
+.fruit-preview {
+    min-height: 285px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px;
+    text-align: center;
+    border-radius: 22px;
+    border: 1px solid #edf0e2;
+    background: linear-gradient(145deg, #fff6df, #f0f9e7);
+}
+
+.fruit-preview--apple { background: linear-gradient(145deg, #fff0e9, #ffe2e1); }
+.fruit-preview--banana { background: linear-gradient(145deg, #fff8d5, #fff0bd); }
+.fruit-preview--grapes { background: linear-gradient(145deg, #f7efff, #e9defb); }
+.fruit-preview--melon { background: linear-gradient(145deg, #effbe1, #d8f3cb); }
+
+.fruit-emoji {
+    margin-bottom: 15px;
+    font-size: 76px;
+    line-height: 1.2;
+}
+
+.fruit-preview-label {
+    color: #78926c;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.fruit-preview h2 {
+    margin: 9px 0 6px;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+}
+
+.fruit-preview p {
+    font-size: 13px;
+}
+
+.fruit-result {
+    margin: 23px 0 0;
+    padding: 14px 18px;
+    border: 1px solid #d7eccf;
+    border-radius: 13px;
+    background: #f2faee;
+    color: #437a38;
+    font-weight: 700;
+}
+
+.fruit-footer {
+    margin-top: 34px;
+    text-align: center;
+    color: #a3b09f;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 680px) {
+    .fruit-page { padding: 18px 12px; align-items: flex-start; }
+    .fruit-card { padding: 28px 22px; border-radius: 22px; }
+    .fruit-header { margin-bottom: 20px; }
+    .fruit-layout { grid-template-columns: 1fr; gap: 15px; }
+    .fruit-form { padding: 0; }
+    .fruit-preview { min-height: 235px; }
+    .fruit-emoji { font-size: 63px; }
+    .fruit-footer { margin-top: 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fruit-select, .fruit-button { transition: none; }
+}
