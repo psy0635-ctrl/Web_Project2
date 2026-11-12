@@ -36,12 +36,17 @@ import AttendanceCardBook from "./10/AttendanceCardBook";
 import NewForm from "./11/NewForm";
 import FruitSelect from "./11/FruitSelect";
 import Reservation from "./11/Reservation";
+import Calculator0 from "./12/ex2/Calculator0";
+import TemperatureInput from "./12/ex3/TemperatureInput";
+import Calculator1 from "./12/ex3/Calculator1";
+import Calculator2 from "./12/ex4/Calculator2";
+import DistanceConverter from "./12/ex5/DistanceConverter";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
         root.render(
             <React.StrictMode>
-            <Reservation/>
+            <DistanceConverter/>
             </React.StrictMode>
 
         );
