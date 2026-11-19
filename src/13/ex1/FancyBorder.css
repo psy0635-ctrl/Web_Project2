@@ -1,0 +1,29 @@
+.fancy-border {
+    margin: 20px;
+    padding: 20px;
+    border: 5px solid var(--fancy-border-color, #245a96);
+    border-radius: 10px;
+    background-color: var(--fancy-border-background, #f0f8ff);
+    text-align: center;
+}
+
+.fancy-border--red {
+    --fancy-border-color: #b52929;
+    --fancy-border-background: #fff0f0;
+}
+
+.fancy-border--green {
+    --fancy-border-color: #27713d;
+    --fancy-border-background: #eef8ef;
+}
+
+.fancy-border__title {
+    margin: 0 0 12px;
+    color: #333;
+    font-size: 1.75rem;
+}
+
+.fancy-border__message {
+    margin: 0 0 12px;
+    color: #555;
+}
