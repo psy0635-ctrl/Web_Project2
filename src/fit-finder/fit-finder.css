@@ -1,0 +1,856 @@
+.fit-finder {
+  --bg: #17171b;
+  --bg-dark: #101012;
+  --glass: rgba(255, 255, 255, 0.085);
+  --glass-light: rgba(255, 255, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.18);
+  --border-strong: rgba(230, 207, 167, 0.45);
+  --text: #ffffff;
+  --sub: #dcdce4;
+  --muted: #b7b7c0;
+  --accent: #e6cfa7;
+}
+
+.fit-finder * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fit-finder {
+  min-height: 100vh;
+  background:
+    /* ▼ 배경은 여러 레이어를 콤마(,)로 쌓을 수 있어. 위에 쓴 것이 앞쪽 레이어. */
+    radial-gradient(circle at 15% 10%, rgba(230, 207, 167, 0.12), transparent 26%),
+    /* radial-gradient = 원형 그라디언트.
+       - circle: 원형 모양
+       - at 15% 10%: 왼쪽에서 15%, 위에서 10% 지점을 중심으로
+       - rgba(230,207,167, 0.12): 골드 색 12% 투명도에서 시작
+       - transparent 26%: 26% 지점부터 완전히 투명해짐
+       → 화면 좌상단에 희미한 골드빛 조명이 비추는 효과 */
+    linear-gradient(135deg, #1d1d22, #111113);
+  color: var(--text);
+  font-family: "Times New Roman", serif;
+  display: flow-root;
+}
+
+.fit-finder a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fit-finder p, .fit-finder span, .fit-finder li {
+  color: var(--sub);
+}
+
+.fit-finder .ff-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  padding: 0 34px;
+  background: rgba(15, 15, 18, 0.82);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.fit-finder .ff-header h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.fit-finder .ff-header nav {
+  display: flex;
+  gap: 32px;
+}
+
+.fit-finder .ff-header nav a {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.fit-finder .ff-header nav a:hover {
+  color: var(--accent);
+}
+
+.fit-finder .ff-home {
+  width: 100%;
+  padding: 110px 28px 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.fit-finder .ff-hero {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: #000;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+}
+
+.fit-finder .ff-hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(18%) brightness(68%) contrast(118%);
+}
+
+.fit-finder .ff-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    /* 첫 번째 레이어: 왼쪽→오른쪽 수평 그라디언트 */
+    linear-gradient(
+      90deg,              /* 90도 = 왼쪽에서 오른쪽 방향 */
+      rgba(5, 5, 6, 0.94) 0%,   /* 시작점(왼쪽): 거의 불투명한 검정 */
+      rgba(5, 5, 6, 0.68) 42%,  /* 42% 지점: 중간 불투명도 */
+      rgba(5, 5, 6, 0.22) 100%  /* 끝점(오른쪽): 거의 투명 */
+      /* → 왼쪽의 텍스트는 어두운 배경 덕에 잘 보이고,
+            오른쪽은 영상이 살아있어 시각적으로 풍부해짐 */
+    ),
+    /* 두 번째 레이어: 반복 직선 패턴 (스캔라인/필름 질감) */
+    repeating-linear-gradient(
+      0deg,                                /* 0도 = 위에서 아래 방향 */
+      rgba(255, 255, 255, 0.024) 0px,      /* 0px: 매우 희미한 흰 선 */
+      rgba(255, 255, 255, 0.024) 1px,      /* 1px: 흰 선 두께 1px */
+      transparent 1px,                      /* 1px 이후: 투명 */
+      transparent 4px                       /* 4px까지 투명 → 반복 */
+      /* → 1px 흰 선 + 3px 투명 = 4px 간격으로 반복되는 가로줄
+            구형 모니터나 영화 필름 같은 레트로한 질감 효과 */
+    );
+  pointer-events: none;
+}
+
+.fit-finder .ff-hero-text {
+  position: absolute;
+  left: 52px;
+  bottom: 52px;
+  z-index: 3;
+  right: 52px;
+  max-width: 760px;
+}
+
+.fit-finder .ff-hero-text p {
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.fit-finder .ff-hero-text h2 {
+  font-size: 76px;
+  line-height: 0.92;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.fit-finder .ff-hero-text span {
+  display: block;
+  color: #e1e1e8;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.fit-finder .ff-hero-text a {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  color: var(--accent);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.fit-finder .ff-hero-text a:hover {
+  background: var(--accent);
+  color: #111113;
+}
+
+.fit-finder .ff-selector {
+  width: 100%;
+  padding: 48px;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.3);
+}
+
+.fit-finder .ff-title {
+  margin-bottom: 36px;
+}
+
+.fit-finder .ff-title p {
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.fit-finder .ff-title h2 {
+  font-size: 52px;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.fit-finder .ff-title span {
+  color: var(--sub);
+  font-size: 16px;
+}
+
+.fit-finder .ff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.fit-finder .ff-body-card {
+  min-height: 160px;
+  padding: 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition: 0.3s;
+}
+
+.fit-finder .ff-body-card span {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.fit-finder .ff-body-card h3 {
+  font-size: 30px;
+  margin: 22px 0 10px;
+  color: var(--text);
+}
+
+.fit-finder .ff-body-card p {
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.fit-finder .ff-body-card:hover {
+  transform: translateY(-6px);
+  background: var(--glass-light);
+  border-color: var(--border-strong);
+}
+
+.fit-finder .guide-section {
+  padding: 120px 42px 80px;
+}
+
+.fit-finder .guide-section h2 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.fit-finder .guide-section > p {
+  color: var(--sub);
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.fit-finder .guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.fit-finder .image-guide-card {
+  position: relative;
+  min-height: 540px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.3);
+  transition: 0.35s;
+  scroll-margin-top: 110px;
+}
+
+.fit-finder .card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.fit-finder .card-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(72%) contrast(112%);
+  transition: 0.5s;
+}
+
+.fit-finder .card-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,                           /* 아래→위 방향 */
+      rgba(18, 18, 20, 0.94) 0%,        /* 하단: 거의 불투명한 어두운 색 */
+      rgba(18, 18, 20, 0.70) 42%,       /* 중간: 중간 불투명도 */
+      rgba(18, 18, 20, 0.30) 100%       /* 상단: 30%로 이미지가 보임 */
+    );
+}
+
+.fit-finder .image-guide-card > span,
+.fit-finder .image-guide-card h3,
+.fit-finder .image-guide-card > p,
+.fit-finder .image-guide-card .fit-box {
+  position: relative;
+  z-index: 5;
+}
+
+.fit-finder .image-guide-card > span {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.fit-finder .image-guide-card h3 {
+  color: var(--text);
+  font-size: 34px;
+  font-weight: bold;
+  margin: 8px 0;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
+}
+
+.fit-finder .image-guide-card > p {
+  color: #f3f3f5;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9);
+}
+
+.fit-finder .fit-box {
+  position: relative;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.54);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(10px);
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 14px;
+}
+
+.fit-finder .fit-box h4 {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.fit-finder .fit-box p {
+  color: #f2f2f2;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.fit-finder .image-guide-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-strong);
+}
+
+.fit-finder .image-guide-card:hover .card-bg img {
+  transform: scale(1.05);
+  filter: brightness(84%) contrast(114%);
+}
+
+.fit-finder .image-guide-card:hover .fit-box {
+  background: rgba(25, 25, 28, 0.78);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.fit-finder .image-guide-card.is-targeted {
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0 0 4px rgba(230, 207, 167, 0.18), /* 외곽에 골드 빛 번짐 */
+    0 28px 80px rgba(0, 0, 0, 0.45);
+}
+
+.fit-finder .fav-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 36px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 14px;
+  color: var(--sub);
+}
+
+.fit-finder .fav-counter .fav-heart-icon {
+  color: #ff5a5a;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.fit-finder .fav-count-num {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.fit-finder .fav-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+  padding: 0;
+  font-family: inherit;
+}
+
+.fit-finder .fav-btn:hover {
+  border-color: rgba(230, 207, 167, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--accent);
+  transform: scale(1.14);
+}
+
+.fit-finder .fav-btn.is-fav {
+  background: rgba(220, 50, 50, 0.28);
+  border-color: rgba(220, 50, 50, 0.65);
+  color: #ff5a5a;
+}
+
+.fit-finder .fav-btn.is-fav:hover {
+  background: rgba(220, 50, 50, 0.45);
+  border-color: rgba(220, 50, 50, 0.9);
+  color: #ff7575;
+  transform: scale(1.14);
+}
+
+.fit-finder .image-guide-card.is-fav {
+  border-color: rgba(220, 50, 50, 0.55);
+  box-shadow:
+    0 0 0 3px rgba(220, 50, 50, 0.16),
+    /* 카드 외곽에 빨간 빛이 번지는 글로우 효과 */
+    0 26px 80px rgba(0, 0, 0, 0.3);
+}
+
+.fit-finder .toggle-fit-btn {
+  position: relative;
+  z-index: 5;
+  margin-top: 12px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--sub);
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: 0.25s;
+  font-family: "Times New Roman", serif;
+  text-align: center;
+}
+
+.fit-finder .toggle-fit-btn:hover {
+  border-color: var(--border-strong);
+  background: rgba(230, 207, 167, 0.1);
+  color: var(--text);
+}
+
+.fit-finder .toggle-fit-btn.showing-bad {
+  border-color: rgba(220, 50, 50, 0.45);
+  background: rgba(220, 50, 50, 0.09);
+  color: #ff7878;
+}
+
+.fit-finder .toggle-fit-btn.showing-bad:hover {
+  background: rgba(220, 50, 50, 0.18);
+  border-color: rgba(220, 50, 50, 0.75);
+  color: #ff9090;
+}
+
+.fit-finder .ff-quiz {
+  width: 100%;
+  padding: 48px;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.3);
+}
+
+.fit-finder .quiz-intro {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.fit-finder .quiz-intro p {
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.fit-finder .quiz-intro h2 {
+  font-size: 44px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.fit-finder .quiz-intro span {
+  display: block;
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.fit-finder .quiz-btn-primary {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: 100px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  font-family: "Times New Roman", serif;
+}
+
+.fit-finder .quiz-btn-primary:hover {
+  background: var(--accent);
+  color: #111113;
+}
+
+.fit-finder .quiz-btn-secondary {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--sub);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Times New Roman", serif;
+}
+
+.fit-finder .quiz-btn-secondary:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fit-finder .quiz-progress {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  text-align: right;
+}
+
+.fit-finder .quiz-bar-wrap {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  margin-bottom: 36px;
+  overflow: hidden;
+}
+
+.fit-finder .quiz-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.fit-finder .quiz-question {
+  font-size: 22px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 28px;
+  font-family: "Times New Roman", serif;
+}
+
+.fit-finder .quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fit-finder .quiz-choice-btn {
+  width: 100%;
+  padding: 16px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--sub);
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.25s;
+  font-family: "Times New Roman", serif;
+  line-height: 1.5;
+}
+
+.fit-finder .quiz-choice-btn:hover {
+  border-color: var(--border-strong);
+  background: rgba(230, 207, 167, 0.1);
+  color: var(--text);
+}
+
+.fit-finder .quiz-result-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.fit-finder .quiz-result-inner {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.fit-finder .quiz-result-img-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  height: 400px;
+}
+
+.fit-finder .quiz-result-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(72%) contrast(112%);
+}
+
+.fit-finder .quiz-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fit-finder .quiz-result-info > span {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.fit-finder .quiz-result-info h3 {
+  color: var(--text);
+  font-size: 42px;
+  font-weight: bold;
+  margin: 8px 0 10px;
+}
+
+.fit-finder .quiz-result-info > p {
+  color: var(--sub);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.fit-finder .quiz-fit-box {
+  margin-bottom: 24px;
+}
+
+.fit-finder .quiz-result-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .fit-finder .ff-quiz {
+    padding: 30px;
+  }
+
+  .fit-finder .quiz-intro h2 {
+    font-size: 32px;
+  }
+
+  .fit-finder .quiz-question {
+    font-size: 18px;
+  }
+
+  .fit-finder .quiz-result-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .fit-finder .quiz-result-img-wrap {
+    height: 300px;
+  }
+
+}
+.fit-finder .footer {
+  width: 92%;
+  margin: 0 auto 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--sub);
+}
+
+@media (max-width: 900px) {
+  .fit-finder .ff-header {
+    height: auto;
+    padding: 22px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .fit-finder .ff-header nav {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fit-finder .ff-home,
+  .fit-finder .guide-section {
+    padding: 140px 22px 60px;
+  }
+
+  .fit-finder .ff-hero {
+    height: 460px;
+  }
+
+  .fit-finder .ff-hero-text {
+    left: 26px;
+    right: 26px;
+    bottom: 32px;
+  }
+
+  .fit-finder .ff-hero-text h2 {
+    font-size: 46px;
+  }
+
+  .fit-finder .ff-selector {
+    padding: 30px;
+  }
+
+  .fit-finder .ff-title h2 {
+    font-size: 38px;
+  }
+
+  .fit-finder .ff-grid,
+  .fit-finder .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fit-finder .guide-section h2 {
+    font-size: 46px;
+  }
+
+  .fit-finder .image-guide-card {
+    min-height: 580px;
+  }
+
+}
+
+.fit-finder #body-type {
+  scroll-margin-top: 130px;
+}
+
+.fit-finder .image-guide-card.is-targeted {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.fit-finder nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.fit-finder :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .fit-finder .ff-home,
+  .fit-finder .guide-section {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .fit-finder .ff-hero-text {
+    left: 20px;
+    right: 20px;
+  }
+
+  .fit-finder .ff-hero-text h2 {
+    font-size: clamp(34px, 10vw, 46px);
+  }
+
+  .fit-finder .ff-quiz,
+  .fit-finder .ff-selector,
+  .fit-finder .image-guide-card {
+    padding: 20px;
+  }
+
+  .fit-finder .guide-section h2 {
+    font-size: clamp(34px, 10vw, 46px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fit-finder *,
+  .fit-finder *::before,
+  .fit-finder *::after {
+    transition: none;
+  }
+}
