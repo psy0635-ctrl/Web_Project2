@@ -36,12 +36,12 @@ React 19와 Create React App을 사용합니다. `App`은 주소의 해시(`#` �
 
 | 파일 | 역할 |
 | --- | --- |
-| [`src/App.js`](src/App.js) | 기존 수업 실습과 FIT FINDER를 주소에 따라 표시합니다. |
-| [`FitFinderApp.jsx`](src/fit-finder/FitFinderApp.jsx) | 홈과 가이드의 공통 메뉴를 한 곳에서 정의하고, 지정한 체형 카드에 초점을 옮겨 스크롤합니다. |
-| [`HomePage.jsx`](src/fit-finder/HomePage.jsx) | `useState`로 퀴즈 응답을 관리하며 문항, 진행률, 진단 결과를 표시합니다. |
-| [`GuidePage.jsx`](src/fit-finder/GuidePage.jsx) | `bodyTypes.map()`으로 `GuideCard`를 여섯 번 렌더링합니다. 카드마다 체형 데이터와 즐겨찾기 상태를 props로 전달합니다. 각 카드는 핏 전환을 자체 상태로 관리하고, 가이드는 즐겨찾기 목록을 `localStorage`의 `fitfinder_favorites`에 체형 ID 배열로 저장합니다. |
-| [`bodyTypes.js`](src/fit-finder/bodyTypes.js), [`quizQuestions.js`](src/fit-finder/quizQuestions.js) | 홈의 체형 선택, 퀴즈 결과, 가이드에서 체형 정보를 공유합니다. 퀴즈 문항과 배점은 별도 데이터로 관리합니다. |
-| [`routes.js`](src/fit-finder/routes.js) | 홈의 체형 선택과 퀴즈 결과에서 공통 함수 `guideCardLink(id)`로 가이드 링크를 생성합니다. |
+| [`src/App.js`](../App.js) | 기존 수업 실습과 FIT FINDER를 주소에 따라 표시합니다. |
+| [`FitFinderApp.jsx`](./FitFinderApp.jsx) | 홈과 가이드의 공통 메뉴를 한 곳에서 정의하고, 지정한 체형 카드에 초점을 옮겨 스크롤합니다. |
+| [`HomePage.jsx`](./HomePage.jsx) | `useState`로 퀴즈 응답을 관리하며 문항, 진행률, 진단 결과를 표시합니다. |
+| [`GuidePage.jsx`](./GuidePage.jsx) | `bodyTypes.map()`으로 `GuideCard`를 여섯 번 렌더링합니다. 카드마다 체형 데이터와 즐겨찾기 상태를 props로 전달합니다. 각 카드는 핏 전환을 자체 상태로 관리하고, 가이드는 즐겨찾기 목록을 `localStorage`의 `fitfinder_favorites`에 체형 ID 배열로 저장합니다. |
+| [`bodyTypes.js`](./bodyTypes.js), [`quizQuestions.js`](./quizQuestions.js) | 홈의 체형 선택, 퀴즈 결과, 가이드에서 체형 정보를 공유합니다. 퀴즈 문항과 배점은 별도 데이터로 관리합니다. |
+| [`routes.js`](./routes.js) | 홈의 체형 선택과 퀴즈 결과에서 공통 함수 `guideCardLink(id)`로 가이드 링크를 생성합니다. |
 
 ## 검증
 
