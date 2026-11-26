@@ -802,7 +802,8 @@
 
 }
 
-.fit-finder #body-type {
+.fit-finder #body-type,
+.fit-finder #body-type-quiz {
   scroll-margin-top: 130px;
 }
 

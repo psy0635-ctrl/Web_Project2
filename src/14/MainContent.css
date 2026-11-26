@@ -1,0 +1,91 @@
+.theme-page {
+    color-scheme: light;
+    --theme-background: #f0f5f2;
+    --theme-surface: #ffffff;
+    --theme-text: #172a24;
+    --theme-muted: #435c52;
+    --theme-border: #cfdfd7;
+    --theme-button: #185c46;
+    --theme-button-hover: #0f4534;
+    --theme-button-text: #ffffff;
+    --theme-shadow: #183e2f1a;
+
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(1rem, 5vw, 3rem);
+    background: var(--theme-background);
+    color: var(--theme-text);
+}
+
+.theme-page[data-theme='dark'] {
+    color-scheme: dark;
+    --theme-background: #101916;
+    --theme-surface: #192722;
+    --theme-text: #edf7f1;
+    --theme-muted: #b6cfc2;
+    --theme-border: #3a554a;
+    --theme-button: #9ee3bf;
+    --theme-button-hover: #b9f1d3;
+    --theme-button-text: #10261d;
+    --theme-shadow: #00000040;
+}
+
+.theme-page__card {
+    box-sizing: border-box;
+    width: min(100%, 34rem);
+    padding: clamp(1.25rem, 6vw, 3rem);
+    border: 1px solid var(--theme-border);
+    border-radius: 1.5rem;
+    background: var(--theme-surface);
+    box-shadow: 0 1.25rem 3rem var(--theme-shadow);
+    word-break: keep-all;
+}
+
+.theme-page__card h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+}
+
+.theme-page__card p {
+    margin: 0.875rem 0 1.75rem;
+    color: var(--theme-muted);
+    line-height: 1.6;
+}
+
+.theme-page__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--theme-border);
+    color: var(--theme-muted);
+    font-size: 0.9375rem;
+}
+
+.theme-page__controls button {
+    min-height: 2.75rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    background: var(--theme-button);
+    color: var(--theme-button-text);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.theme-page__controls button:hover {
+    background: var(--theme-button-hover);
+}
+
+.theme-page__controls button:focus-visible {
+    outline: 2px solid var(--theme-button);
+    outline-offset: 3px;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { bodyTypes } from './bodyTypes';
 import { quizQuestions } from './quizQuestions';
-import { BODY_TYPE_SECTION, guideCardLink, HOME_HASH } from './routes';
+import { BODY_TYPE_SECTION, guideCardLink, HOME_HASH, QUIZ_SECTION } from './routes';
 
 const heroVideo = 'https://assets.awwwards.com/awards/element/2026/03/69b867c9ea0b5478333127.mp4';
 
@@ -101,7 +101,7 @@ function BodyTypeQuiz() {
         );
     }
 
-    return <section className="ff-quiz" aria-label="체형 진단">{content}</section>;
+    return <section className="ff-quiz" id={QUIZ_SECTION} tabIndex={-1} aria-label="체형 진단">{content}</section>;
 }
 
 export default function HomePage() {
